@@ -2,8 +2,8 @@
 A clean architecture news app built with Flutter
 
 # File Structure Walkthrough
-lib
----> src
+
+
     ---> locator.dart
     ---> utils
             ---> constants
@@ -26,6 +26,8 @@ lib
                 ---> remote
 
 • The locator.dart inside the lib/src folder is responsible for injecting our dependencies using the get_it package
+
 • config folder includes the configuration about the app (themes, routers) and anything else related to the app’s configurations
+
 • utils folder includes (constants, extensions, resources) and anything related to that
 
