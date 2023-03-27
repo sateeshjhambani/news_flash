@@ -21,7 +21,7 @@ A clean architecture news app built with Flutter
             ---> repositories
     ---> data
             ---> repositories
-            ---> data_sources
+            ---> data_source
                 ---> local
                 ---> remote
 
