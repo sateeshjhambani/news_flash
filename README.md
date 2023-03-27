@@ -25,7 +25,7 @@ A clean architecture news app built with Flutter
                 ---> local
                 ---> remote
 
-### Layer Breakdown
+### Project Layer Breakdown
 
 • locator.dart inside the lib/src folder is responsible for injecting our dependencies using the get_it package.
 
