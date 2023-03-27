@@ -21,7 +21,7 @@ lib
             ---> repositories
     ---> data
             ---> repositories
-            ---> datasources
+            ---> data_sources
                 ---> local
                 ---> remote
 
