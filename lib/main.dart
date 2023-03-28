@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'config/router/app_router.gr.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'config/router/app_router.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'config/themes/app_themes.dart';
+import 'domain/repositories/api_repository.dart';
+import 'locator.dart';
+import 'presentation/cubits/remote_articles/remote_articles_cubit.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDependencies();
   runApp(const MyApp());
 }
 
@@ -15,12 +21,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OKToast(
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser(),
-        theme: AppTheme.light,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => RemoteArticlesCubit(
+            locator.get<ApiRepository>(),
+          )..getBreakingNewsArticles(),
+        )
+      ],
+      child: OKToast(
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerDelegate: _appRouter.delegate(),
+          routeInformationParser: _appRouter.defaultRouteParser(),
+          theme: AppTheme.light,
+        ),
       ),
     );
   }
