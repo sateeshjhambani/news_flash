@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:oktoast/oktoast.dart';
-
-import '../../config/router/app_router.dart';
 import '../../domain/model/article.dart';
 import '../cubits/local_articles/local_articles_cubit.dart';
 
@@ -21,7 +19,7 @@ class ArticleDetailsView extends HookWidget {
       appBar: AppBar(
         leading: GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () => appRouter.pop(),
+          onTap: () => Navigator.pop(context),
           child: const Icon(Ionicons.chevron_back, color: Colors.black),
         ),
       ),

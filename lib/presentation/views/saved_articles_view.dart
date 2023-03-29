@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ionicons/ionicons.dart';
-
-import '../../config/router/app_router.dart';
 import '../../domain/model/article.dart';
 import '../cubits/local_articles/local_articles_cubit.dart';
 import '../widgets/ArticleWidget.dart';
+import 'article_details_view.dart';
 
 class SavedArticlesView extends HookWidget {
-  const SavedArticlesView({Key? key}) : super(key: key);
+
+  SavedArticlesView({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class SavedArticlesView extends HookWidget {
       appBar: AppBar(
         leading: GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () => appRouter.pop(),
+          onTap: () => Navigator.pop(context),
           child: const Icon(Ionicons.chevron_back, color: Colors.black),
         ),
         title: const Text(
@@ -58,9 +59,13 @@ class SavedArticlesView extends HookWidget {
           isRemovable: true,
           onRemove: (article) => BlocProvider.of<LocalArticlesCubit>(context)
               .removeArticle(article: article),
-          onArticlePressed: (article) => appRouter.push(
-            ArticleDetailsViewRoute(article: article),
-          ),
+          onArticlePressed: (article) =>
+          {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ArticleDetailsView(article: article)),
+            )
+          },
         );
       },
     );
