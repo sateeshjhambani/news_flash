@@ -5,7 +5,9 @@ import 'package:oktoast/oktoast.dart';
 
 import 'config/themes/app_themes.dart';
 import 'domain/repositories/api_repository.dart';
+import 'domain/repositories/database_repository.dart';
 import 'locator.dart';
+import 'presentation/cubits/local_articles/local_articles_cubit.dart';
 import 'presentation/cubits/remote_articles/remote_articles_cubit.dart';
 
 void main() async {
@@ -24,10 +26,15 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+          create: (context) => LocalArticlesCubit(
+            locator.get<DatabaseRepository>(),
+          )..getAllSavedArticles(),
+        ),
+        BlocProvider(
           create: (context) => RemoteArticlesCubit(
             locator.get<ApiRepository>(),
           )..getBreakingNewsArticles(),
-        )
+        ),
       ],
       child: OKToast(
         child: MaterialApp.router(
