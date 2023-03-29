@@ -1,6 +1,8 @@
 # news_flash
 A clean architecture news app built with Flutter
 
+![#015-min 2](https://user-images.githubusercontent.com/60574717/228646356-45cc4363-195f-49b2-9927-5b5274096c27.png)
+
 ### File Structure Walkthrough
 
 
